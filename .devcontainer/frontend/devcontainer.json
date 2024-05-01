@@ -1,0 +1,37 @@
+{
+  "name": "Frontend",
+  "dockerComposeFile": ["../../docker-compose.yml"],
+  "service": "frontend",
+  "shutdownAction": "none",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "eslint.useESLintClass": true,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        // 保存時に実行されるコードアクションを有効に設定
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit",
+          "source.organizeImports": "explicit" // ESLintによる自動インポート順序の整理を無効化
+        }
+      },
+      // ESLintの対象を設定
+      "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+      // VSCodeのデフォルトのフォーマッターを無効に
+      "javascript.format.enable": false,
+      "typescript.format.enable": false,
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-rename-tag"
+      ]
+    }
+  }
+}

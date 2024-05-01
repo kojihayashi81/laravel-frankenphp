@@ -1,0 +1,25 @@
+{
+    "name": "nasteng/say-hello",
+    "description": "Add hello world automatically",
+    "authors": [
+        {
+            "name": "nasteng"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^11.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nasteng\\SayHello\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nasteng\\SayHello\\HelloServiceProvider"
+            ]
+        }
+    }
+}

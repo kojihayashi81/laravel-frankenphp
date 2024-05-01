@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/backend/api/Dockerfile
+    volumes:
+      - ./backend/api/src:/app
+    entrypoint: php artisan octane:frankenphp --max-requests=1
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - medium_clone
+  db:
+    image: 'postgres:16-alpine3.18'
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      TZ: "Asia/Tokyo"
+    volumes:
+      - 'postgres-data:/var/lib/postgresql/data'
+    networks:
+      - medium_clone
+  redis:
+    image: 'redis:latest'
+    volumes:
+      - 'redis-data:/data'
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    networks:
+      - medium_clone
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/client/Dockerfile
+    volumes:
+      - ./frontend/client/src:/app
+    command: 'npm run dev'
+    ports:
+      - 3000:3000
+
+  wrk:
+    image: ruslanys/wrk:debian
+    entrypoint: /bin/sh
+    networks:
+      - medium_clone
+networks:
+  medium_clone:
+    name: medium_clone
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local

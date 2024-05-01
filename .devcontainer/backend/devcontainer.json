@@ -1,0 +1,35 @@
+{
+  "name": "Backend",
+  "dockerComposeFile": ["../../docker-compose.yml"],
+  "service": "api",
+  // 開いたコンテナ内のワークスペースのパス
+  "workspaceFolder": "/app",
+  // devコンテナを閉じた時のアクション
+  "shutdownAction": "none",
+  // リモート先のVS Codeにインストールする拡張機能
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+      },
+      "extensions": [
+        "mhutchie.git-graph",
+        "xdebug.php-debug",
+        "bmewburn.vscode-intelephense-client",
+        "neilbrayfield.php-docblocker",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "mikestead.dotenv",
+        "onecentlin.laravel-extension-pack",
+        "ryannaddy.laravel-artisan",
+        "ctf0.laravel-goto-controller",
+        "github.copilot-chat",
+        "github.copilot-labs",
+        "github.copilot",
+        "oderwat.indent-rainbow",
+        "mosapride.zenkaku"
+      ]
+    }
+  }
+}
